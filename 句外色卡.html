@@ -1,0 +1,1983 @@
+<!DOCTYPE html><html lang="zh-CN" data-lvt-canonical="1"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>句外 · UI Kit 设计规范</title>
+
+<!-- Fonts: Inter (Latin) + OPPO Sans (CJK body) + Noto Sans SC (fallback) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;family=Noto+Sans+SC:wght@300;400;700&amp;display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: "OPPO Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://code.oppo.com/content/dam/oppo/common/fonts/font2/new-font/OPPOSansOS2-5000-Regular.woff2") format("woff2");
+}
+
+:root {
+  /* Palette */
+  --bg: #F7F4EF;
+  --card: #FFFFFF;
+  --fog-pink: #EBD3D0;
+  --border: #E5E0D6;
+  --disabled-bg: #E8E4DC;
+  --sage: #A8B5A0;
+  --sage-dark: #8A9984;
+  --blue-gray: #A9B4BC;
+  --blue-gray-dark: #7C8891;
+  --text-primary: #4A4640;
+  --text-secondary: #6B655B;
+  --text-caption: #9A948A;
+  --text-disabled: #B5AFA4;
+  --warn: #E3B48A;
+  --shadow: 0 8px 30px rgba(90,84,74,0.06);
+  --shadow-hover: 0 16px 40px rgba(90,84,74,0.12);
+
+  /* Typography */
+  --font-cn: "Inter", "OPPO Sans", "PingFang SC", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+
+  /* Spacing */
+  --content-max: 1200px;
+  --section-gap: 32px;
+  --card-pad: 44px 48px;
+  --card-radius: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-cn);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ─── Layout ─── */
+.page-wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.section-card {
+  background: var(--card);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  padding: var(--card-pad);
+  margin-bottom: var(--section-gap);
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-caption);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Header ─── */
+.site-header {
+  background: var(--bg);
+  padding: 32px 40px 0;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 56px;
+}
+
+.header-logo {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+  display: block;
+}
+
+.header-tagline-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-caption);
+  letter-spacing: 1.5px;
+}
+
+.brand-claim {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.brand-claim h1 {
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 4px;
+  line-height: 1.4;
+}
+
+/* ─── Section 1: Logo ─── */
+.logo-section-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.logo-main-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.logo-main-display img {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo-desc {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.9;
+}
+
+.logo-desc strong {
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+.logo-usage-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.logo-usage-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-usage-bg {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-usage-bg.sage-bg { background: var(--sage); }
+.logo-usage-bg.blue-bg { background: var(--blue-gray); }
+
+.logo-usage-caption {
+  font-size: 12px;
+  color: var(--text-caption);
+  letter-spacing: 0.5px;
+}
+
+/* CSS 双圈符号 (白色空心) */
+.dual-ring-symbol {
+  position: relative;
+  width: 36px;
+  height: 36px;
+}
+
+.dual-ring-symbol .ring-big {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.9);
+}
+
+.dual-ring-symbol .ring-small {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.2px solid rgba(255,255,255,0.9);
+}
+
+/* ─── Section 2: Color ─── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.color-grid-neutral {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+}
+
+.color-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.color-swatch {
+  height: 72px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.color-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.color-hex {
+  font-size: 12px;
+  color: var(--text-caption);
+  font-family: "Inter", monospace;
+  letter-spacing: 0.5px;
+}
+
+.color-row-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-caption);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  margin-top: 8px;
+}
+
+/* ─── Section 3: Typography ─── */
+.type-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 24px;
+}
+
+.type-row:last-child { border-bottom: none; }
+
+.type-sample { flex: 1; }
+
+.type-meta {
+  flex-shrink: 0;
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-caption);
+  font-family: "Inter", monospace;
+  line-height: 1.8;
+}
+
+.type-display {
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  line-height: 1.3;
+}
+
+.type-h1 {
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+.type-h2 {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.type-body {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+.type-caption {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-caption);
+  line-height: 1.6;
+}
+
+/* ─── Section 4: Buttons ─── */
+.btn-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.btn-group-label {
+  font-size: 12px;
+  color: var(--text-caption);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 24px;
+  font-family: var(--font-cn);
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Primary */
+.btn-primary {
+  background: var(--sage);
+  color: #3A3E36;
+  box-shadow: 0 4px 16px rgba(168,181,160,0.3);
+}
+.btn-primary:hover {
+  background: var(--sage-dark);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(168,181,160,0.4);
+}
+
+/* Secondary */
+.btn-secondary {
+  background: var(--card);
+  color: var(--sage-dark);
+  border: 1.5px solid var(--sage);
+}
+.btn-secondary:hover {
+  background: rgba(168,181,160,0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168,181,160,0.15);
+}
+
+/* Text */
+.btn-text {
+  background: transparent;
+  color: var(--blue-gray-dark);
+  padding: 0 8px;
+  height: 40px;
+}
+.btn-text:hover {
+  color: var(--sage-dark);
+}
+
+/* Disabled */
+.btn-disabled {
+  background: var(--disabled-bg);
+  color: #8A8278;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-size-note {
+  font-size: 11px;
+  color: var(--text-caption);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* ─── Section 5: Forms ─── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+.form-input {
+  height: 48px;
+  padding: 0 16px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-family: var(--font-cn);
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: var(--text-caption);
+}
+
+.form-input:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(168,181,160,0.15);
+}
+
+.form-select {
+  height: 48px;
+  padding: 0 16px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-family: var(--font-cn);
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%239A948A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.form-select:focus {
+  border-color: var(--sage);
+}
+
+/* Search input */
+.form-search-wrap {
+  position: relative;
+}
+
+.form-search-wrap .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-caption);
+  pointer-events: none;
+}
+
+.form-search-wrap .form-input {
+  padding-left: 42px;
+}
+
+/* Radio & Checkbox */
+.form-options-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.form-option input[type="radio"],
+.form-option input[type="checkbox"] {
+  display: none;
+}
+
+.custom-radio,
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  background: var(--card);
+}
+
+.custom-checkbox {
+  border-radius: 6px;
+}
+
+.form-option input[type="radio"]:checked ~ .custom-radio {
+  border-color: var(--sage);
+  background: var(--sage);
+}
+
+.form-option input[type="radio"]:checked ~ .custom-radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  background: transparent;
+}
+
+.form-option input[type="checkbox"]:checked ~ .custom-checkbox {
+  border-color: var(--sage);
+  background: var(--sage);
+}
+
+.form-option input[type="checkbox"]:checked ~ .custom-checkbox::after {
+  content: '';
+  width: 10px;
+  height: 7px;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+/* Switch */
+.switch-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.switch {
+  position: relative;
+  width: 48px;
+  height: 28px;
+}
+
+.switch input { display: none; }
+
+.switch-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: var(--border);
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.switch input:checked ~ .switch-track { background: var(--sage); }
+.switch input:checked ~ .switch-thumb { transform: translateX(20px); }
+
+/* ─── Section 6: Cards ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.content-card {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.content-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.card-img-slot {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-img-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.card-body {
+  padding: 20px 22px 22px;
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.card-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-caption);
+  margin-bottom: 14px;
+}
+
+/* Memo card */
+.memo-card {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.memo-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.memo-date {
+  font-size: 12px;
+  color: var(--text-caption);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.memo-content {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+.memo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.memo-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(168,181,160,0.12);
+  color: var(--sage-dark);
+  font-size: 12px;
+}
+
+/* Mood card */
+.mood-card {
+  background: linear-gradient(145deg, rgba(235,211,208,0.3) 0%, rgba(169,180,188,0.15) 100%);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  border: 1px solid rgba(235,211,208,0.4);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.mood-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.mood-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mood-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--fog-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.mood-user {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.mood-time {
+  font-size: 12px;
+  color: var(--text-caption);
+}
+
+.mood-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 14px;
+}
+
+.mood-emoji-row {
+  display: flex;
+  gap: 8px;
+}
+
+.mood-emoji {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.mood-emoji:hover { transform: scale(1.15); }
+
+/* ─── Section 7: Icons ─── */
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--bg);
+  transition: background 0.2s ease;
+}
+
+.icon-box:hover { background: rgba(168,181,160,0.12); }
+
+.icon-box svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--text-secondary);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-label {
+  font-size: 12px;
+  color: var(--text-caption);
+  letter-spacing: 0.3px;
+}
+
+/* Brand decoration: dual ring */
+.brand-deco-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.brand-deco-label {
+  font-size: 13px;
+  color: var(--text-caption);
+  letter-spacing: 0.5px;
+}
+
+.deco-ring-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* CSS dual ring (dark) */
+.ring-deco {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.ring-deco .r-big {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-caption);
+}
+
+.ring-deco .r-small {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--text-caption);
+}
+
+/* Loading placeholder */
+.loading-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg);
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.loading-ring-anim {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.loading-ring-anim .lr-big {
+  position: absolute;
+  top: 0; left: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1.8px solid var(--sage);
+  border-top-color: transparent;
+  animation: spin 1.2s linear infinite;
+}
+
+.loading-ring-anim .lr-small {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 1.2px solid var(--blue-gray);
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite reverse;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 13px;
+  color: var(--text-caption);
+  letter-spacing: 0.5px;
+}
+
+/* ─── Section 8: Navigation ─── */
+.nav-demo {
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.top-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-nav-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.top-nav-brand {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+.top-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.top-nav-menu li a {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+  padding-bottom: 2px;
+}
+
+.top-nav-menu li a:hover { color: var(--sage-dark); }
+.top-nav-menu li.active a {
+  color: var(--sage-dark);
+  border-bottom: 1.5px solid var(--sage);
+}
+
+.top-nav-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--fog-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+/* Tab Bar */
+.tab-bar-demo {
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 28px;
+  max-width: 400px;
+}
+
+.tab-bar-label {
+  font-size: 12px;
+  color: var(--text-caption);
+  padding: 12px 20px 8px;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-bar {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 8px;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 8px 4px;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.tab-item:hover { background: var(--bg); }
+
+.tab-item svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--text-caption);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.2s ease;
+}
+
+.tab-item.active svg { stroke: var(--sage-dark); }
+
+.tab-item-label {
+  font-size: 11px;
+  color: var(--text-caption);
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+
+.tab-item.active .tab-item-label { color: var(--sage-dark); }
+
+/* Chips */
+.chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 17px;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.chip-default {
+  background: var(--card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.chip-default:hover {
+  border-color: var(--sage);
+  color: var(--sage-dark);
+}
+
+.chip-active {
+  background: var(--sage);
+  color: #3A3E36;
+  border: 1px solid var(--sage);
+}
+
+/* Progress */
+.progress-wrap {
+  margin-bottom: 20px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-caption);
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--sage);
+  transition: width 0.3s ease;
+}
+
+/* Segmented control */
+.segmented {
+  display: inline-flex;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 2px;
+}
+
+.seg-item {
+  padding: 8px 20px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-caption);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.seg-item.active {
+  background: var(--card);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(90,84,74,0.08);
+}
+
+/* ─── Section 9: Spacing & Radius ─── */
+.spacing-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.spacing-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.spacing-block {
+  background: rgba(168,181,160,0.25);
+  border-radius: 4px;
+  height: 40px;
+}
+
+.spacing-val {
+  font-size: 12px;
+  color: var(--text-caption);
+  font-family: "Inter", monospace;
+  letter-spacing: 0.3px;
+}
+
+.radius-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.radius-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.radius-block {
+  width: 64px;
+  height: 64px;
+  background: rgba(169,180,188,0.2);
+  border: 1.5px solid var(--blue-gray);
+}
+
+.radius-val {
+  font-size: 12px;
+  color: var(--text-caption);
+  font-family: "Inter", monospace;
+}
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center;
+  padding: 48px 40px 64px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.footer-text {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--text-caption);
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+
+/* ─── Utilities ─── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.flex-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="site-header" data-lvt-eid="d1c8f4bf9d">
+  <nav class="header-nav" data-lvt-eid="2953aa7808">
+    <img class="header-logo" src="https://a.lovart.ai/artifacts/agent/t7NL63i0Ai13Zt0i.png" alt="句外 Logo" data-lvt-eid="ec4d3ef4e3">
+    <span class="header-tagline-text" data-lvt-eid="2b63beb695">中文产品界面设计规范 · UI Kit</span>
+  </nav>
+  <div class="brand-claim" data-lvt-eid="4fce1e882a">
+    <h1 data-lvt-eid="b885e19e12">句号之外，还有句子。</h1>
+  </div>
+</header>
+
+<main class="page-wrap" data-lvt-eid="f325e0408d">
+
+  <!-- ═══ 1. LOGO ═══ -->
+  <section class="section-card" data-lvt-eid="d36527fa55">
+    <div class="section-label" data-lvt-eid="63599b198b">01 &nbsp; Logo 品牌标识</div>
+    <div class="logo-section-inner" data-lvt-eid="248f86de8e">
+      <div class="logo-main-display" data-lvt-eid="a01b98ae31">
+        <img src="https://a.lovart.ai/artifacts/agent/t7NL63i0Ai13Zt0i.png" alt="句外 Logo 主版本" data-lvt-eid="36ab7e814f">
+      </div>
+      <div class="logo-info" data-lvt-eid="4e954f8112">
+        <p class="logo-desc" data-lvt-eid="87769ae9bb">
+          <strong data-lvt-eid="5407078f25">图形构成：</strong>空心大圆圈代表句号，右下角空心小圆环代表「句号之外的句号」。两圈之间留有呼吸距离，大小与线条粗细形成主次关系——大圈略粗，小圈更纤细。
+        </p>
+        <p class="logo-desc" data-lvt-eid="38436f57a8">
+          <strong data-lvt-eid="0d8ef02658">使用原则：</strong>品牌符号与字体组合为整体，不可拆分使用。保持透明底或与品牌背景色融合，不得改色或重绘。
+        </p>
+        <p class="logo-desc" data-lvt-eid="f71048be05">
+          <strong data-lvt-eid="04d91857b3">最小尺寸：</strong>数字端不小于 32px 高度，印刷端不小于 8mm。
+        </p>
+        <div data-lvt-eid="615dd707da">
+          <p class="logo-desc" style="margin-bottom: 14px;" data-lvt-eid="ff9bde21dd"><strong data-lvt-eid="98da1348f7">色底使用示例：</strong></p>
+          <div class="logo-usage-row" data-lvt-eid="476cb43ad1">
+            <div class="logo-usage-item" data-lvt-eid="07bb6ba547">
+              <div class="logo-usage-bg sage-bg" data-lvt-eid="b9de8d407a">
+                <div class="dual-ring-symbol" data-lvt-eid="26412870da">
+                  <div class="ring-big" data-lvt-eid="2438dfe061"></div>
+                  <div class="ring-small" data-lvt-eid="d2ec91c1a0"></div>
+                </div>
+              </div>
+              <span class="logo-usage-caption" data-lvt-eid="1a5a1ba6c9">鼠尾草绿底</span>
+            </div>
+            <div class="logo-usage-item" data-lvt-eid="4637624b1b">
+              <div class="logo-usage-bg blue-bg" data-lvt-eid="84e67707d9">
+                <div class="dual-ring-symbol" data-lvt-eid="2c2736932c">
+                  <div class="ring-big" data-lvt-eid="5998dfec25"></div>
+                  <div class="ring-small" data-lvt-eid="978aad43b4"></div>
+                </div>
+              </div>
+              <span class="logo-usage-caption" data-lvt-eid="d2f5a875aa">柔和蓝灰底</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. COLOR ═══ -->
+  <section class="section-card" data-lvt-eid="5de163e332">
+    <div class="section-label" data-lvt-eid="9127f71be6">02 &nbsp; 配色系统 Color</div>
+
+    <p class="color-row-label" data-lvt-eid="0885febdea">主色系</p>
+    <div class="color-grid" data-lvt-eid="5c93ce1003">
+      <div class="color-chip" data-lvt-eid="d2cfb57fe2">
+        <div class="color-swatch" style="background:#F7F4EF; border: 1px solid #E5E0D6;" data-lvt-eid="67cdd146e6"></div>
+        <div class="color-name" data-lvt-eid="c00e096ab2">米白背景</div>
+        <div class="color-hex" data-lvt-eid="ce8c437042">#F7F4EF</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="a6171f1f7c">
+        <div class="color-swatch" style="background:#EBD3D0;" data-lvt-eid="d79e32319c"></div>
+        <div class="color-name" data-lvt-eid="06652c83a9">雾粉</div>
+        <div class="color-hex" data-lvt-eid="2a77c0fe7d">#EBD3D0</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="540f1fd3b4">
+        <div class="color-swatch" style="background: rgb(168, 181, 160); width: 203.711px; height: 83.6102px; transform-origin: 0px 0px; transform: translate(0px, -11.6102px);" data-lvt-eid="a406938e89"></div>
+        <div class="color-name" data-lvt-eid="73ad380230">鼠尾草绿</div>
+        <div class="color-hex" data-lvt-eid="e116f06b10">#A8B5A0</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="3c3fc8d33c">
+        <div class="color-swatch" style="background:#A9B4BC;" data-lvt-eid="37b82f9172"></div>
+        <div class="color-name" data-lvt-eid="1bc9dce014">柔和蓝灰</div>
+        <div class="color-hex" data-lvt-eid="e00cc6e7ee">#A9B4BC</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="8aa71a50ba">
+        <div class="color-swatch" style="background:#FFFFFF; border: 1px solid #E5E0D6;" data-lvt-eid="55c16ab7a9"></div>
+        <div class="color-name" data-lvt-eid="9d8379f638">卡片白</div>
+        <div class="color-hex" data-lvt-eid="2969aa1e7e">#FFFFFF</div>
+      </div>
+    </div>
+
+    <p class="color-row-label" style="margin-top: 28px;" data-lvt-eid="3188e5ae7f">中性 / 功能色</p>
+    <div class="color-grid-neutral" data-lvt-eid="f24ee00036">
+      <div class="color-chip" data-lvt-eid="389d418511">
+        <div class="color-swatch" style="background:#4A4640;" data-lvt-eid="34b7994ea8"></div>
+        <div class="color-name" data-lvt-eid="0f5aed03da">主文字</div>
+        <div class="color-hex" data-lvt-eid="2fd0acce05">#4A4640</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="af213c1e47">
+        <div class="color-swatch" style="background:#6B655B;" data-lvt-eid="f6fcfd98cf"></div>
+        <div class="color-name" data-lvt-eid="7b2d7b6671">次级文字</div>
+        <div class="color-hex" data-lvt-eid="0341837fc2">#6B655B</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="c61be1429e">
+        <div class="color-swatch" style="background:#9A948A;" data-lvt-eid="b2628523a8"></div>
+        <div class="color-name" data-lvt-eid="52f626f5ac">辅助文字</div>
+        <div class="color-hex" data-lvt-eid="a129689633">#9A948A</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="304857281c">
+        <div class="color-swatch" style="background:#E5E0D6;" data-lvt-eid="1bda987774"></div>
+        <div class="color-name" data-lvt-eid="fbe88ac045">边框</div>
+        <div class="color-hex" data-lvt-eid="6bcc603261">#E5E0D6</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="603ce5e292">
+        <div class="color-swatch" style="background:#8A9984;" data-lvt-eid="170fddbe6f"></div>
+        <div class="color-name" data-lvt-eid="d08a5db6b6">绿色强调</div>
+        <div class="color-hex" data-lvt-eid="9161fa88a3">#8A9984</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="aa3a6c1861">
+        <div class="color-swatch" style="background:#E3B48A;" data-lvt-eid="1b50acf080"></div>
+        <div class="color-name" data-lvt-eid="e332f8cd4c">柔杏警示</div>
+        <div class="color-hex" data-lvt-eid="139c7020a0">#E3B48A</div>
+      </div>
+      <div class="color-chip" data-lvt-eid="0a84bf9997">
+        <div class="color-swatch" style="background:#E8E4DC;" data-lvt-eid="b07253b334"></div>
+        <div class="color-name" data-lvt-eid="5486508121">禁用底色</div>
+        <div class="color-hex" data-lvt-eid="1c07b5a25f">#E8E4DC</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. TYPOGRAPHY ═══ -->
+  <section class="section-card" data-lvt-eid="a8998cf8f1">
+    <div class="section-label" data-lvt-eid="252cadeba9">03 &nbsp; 字体层级 Typography</div>
+
+    <div class="type-row" data-lvt-eid="32ca6ca672">
+      <div class="type-sample" data-lvt-eid="9ac96aab2c">
+        <div class="type-display" data-lvt-eid="a6f26c2ee5">轻盈如风，诗意栖居。</div>
+      </div>
+      <div class="type-meta" data-lvt-eid="4f3a78ac7f">
+        Display<br data-lvt-eid="005edda203">36px / 300<br data-lvt-eid="0587066fac">letter-spacing 2px<br data-lvt-eid="aceadff8b0">#4A4640
+      </div>
+    </div>
+
+    <div class="type-row" data-lvt-eid="10b92078bc">
+      <div class="type-sample" data-lvt-eid="4eed871ff0">
+        <div class="type-h1" data-lvt-eid="b49865ea87">今天，写下你想说的话。</div>
+      </div>
+      <div class="type-meta" data-lvt-eid="8b3c98911a">
+        H1 页面标题<br data-lvt-eid="ecc0c459b8">28px / 400<br data-lvt-eid="824a77246b">letter-spacing 1px<br data-lvt-eid="04904a3888">#4A4640
+      </div>
+    </div>
+
+    <div class="type-row" data-lvt-eid="546d5c7395">
+      <div class="type-sample" data-lvt-eid="4ea947f405">
+        <div class="type-h2" data-lvt-eid="3bb83cfc8a">记录 · 发现 · 感受</div>
+      </div>
+      <div class="type-meta" data-lvt-eid="306cd6c4b3">
+        H2 区块标题<br data-lvt-eid="dc398f2b00">22px / 400<br data-lvt-eid="16d36b6818">letter-spacing 0.5px<br data-lvt-eid="2fe720f12c">#4A4640
+      </div>
+    </div>
+
+    <div class="type-row" data-lvt-eid="6f37274be6">
+      <div class="type-sample" data-lvt-eid="5985034dd7">
+        <div class="type-body" data-lvt-eid="f5e7a90cf0">有些话，说出来就轻了。有些感受，写下来才真实。句外是一个温柔的容器，盛放那些句号之外的心情与文字。</div>
+      </div>
+      <div class="type-meta" data-lvt-eid="f6f3ff130e">
+        Body 正文<br data-lvt-eid="f22fe453fa">16px / 400<br data-lvt-eid="332d3547b8">line-height 1.8<br data-lvt-eid="789d12f8e4">#4A4640
+      </div>
+    </div>
+
+    <div class="type-row" data-lvt-eid="3181f048b5">
+      <div class="type-sample" data-lvt-eid="b0d906de1e">
+        <div class="type-caption" data-lvt-eid="016253cd47">最后更新于 2024 年秋 · 版本 1.0 · 仅供内部参考</div>
+      </div>
+      <div class="type-meta" data-lvt-eid="127c892bd6">
+        Caption 辅助<br data-lvt-eid="5bf0948012">13px / 400<br data-lvt-eid="65ab8d16be">line-height 1.6<br data-lvt-eid="1476259767">#9A948A
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. BUTTONS ═══ -->
+  <section class="section-card" data-lvt-eid="25395ee66f">
+    <div class="section-label" data-lvt-eid="f867b8920f">04 &nbsp; 按钮 Buttons</div>
+    <div class="btn-showcase" data-lvt-eid="60f21d1a6a">
+
+      <div class="btn-group" data-lvt-eid="08d32a7bed">
+        <div class="btn-group-label" data-lvt-eid="278cd70ad2">主要按钮 Primary</div>
+        <button class="btn btn-primary" data-lvt-eid="71b851c655">开始书写</button>
+        <button class="btn btn-primary" style="opacity:0.85;" data-lvt-eid="62b3524e0c">hover 态 ↑</button>
+        <div class="btn-size-note" data-lvt-eid="90a7da5f06">H 48px · R 24px · 鼠尾草绿底</div>
+      </div>
+
+      <div class="btn-group" data-lvt-eid="d287c20d93">
+        <div class="btn-group-label" data-lvt-eid="3d61fb8ccf">次要按钮 Secondary</div>
+        <button class="btn btn-secondary" data-lvt-eid="ba040f7832">查看更多</button>
+        <button class="btn btn-secondary" style="background:rgba(168,181,160,0.06);" data-lvt-eid="e3ea2befa4">hover 态 ↑</button>
+        <div class="btn-size-note" data-lvt-eid="8dd273907d">H 48px · R 24px · 绿色描边 1.5px</div>
+      </div>
+
+      <div class="btn-group" data-lvt-eid="df3049ae69">
+        <div class="btn-group-label" data-lvt-eid="6d71ce055d">文字按钮 Text</div>
+        <button class="btn btn-text" data-lvt-eid="5b7502bc8b">跳过</button>
+        <button class="btn btn-text" style="color: var(--sage-dark);" data-lvt-eid="89d76d1a8d">hover 态 →</button>
+        <div class="btn-size-note" data-lvt-eid="80329232e0">H 40px · 无底色 · 蓝灰字</div>
+      </div>
+
+      <div class="btn-group" data-lvt-eid="15e49779cf">
+        <div class="btn-group-label" data-lvt-eid="97972a6c5f">禁用态 Disabled</div>
+        <button class="btn btn-disabled" data-lvt-eid="bf54bc57a0">无法操作</button>
+        <div class="btn-size-note" data-lvt-eid="520bb77c08">H 48px · 浅灰底 · 灰字</div>
+      </div>
+
+      <div class="btn-group" data-lvt-eid="92a5bac09b">
+        <div class="btn-group-label" data-lvt-eid="02698506b2">小尺寸 Small</div>
+        <button class="btn btn-primary" style="height:36px; padding: 0 18px; font-size:13px; border-radius:18px;" data-lvt-eid="7d82001aca">保存</button>
+        <button class="btn btn-secondary" style="height:36px; padding: 0 18px; font-size:13px; border-radius:18px;" data-lvt-eid="dd61bebac6">取消</button>
+        <div class="btn-size-note" data-lvt-eid="d345141c4c">H 36px · R 18px</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 5. FORMS ═══ -->
+  <section class="section-card" data-lvt-eid="2bce6d4680">
+    <div class="section-label" data-lvt-eid="9efe9838c4">05 &nbsp; 表单控件 Forms</div>
+    <div class="form-grid" data-lvt-eid="c5bf15ae7f">
+
+      <div class="form-field" data-lvt-eid="c5ba0ba0e1">
+        <label class="form-label" data-lvt-eid="c2b8819cbc">文本输入框</label>
+        <input class="form-input" type="text" placeholder="请输入你想说的话…" data-lvt-eid="0a52aa07ff">
+      </div>
+
+      <div class="form-field" data-lvt-eid="50a0bf05c1">
+        <label class="form-label" data-lvt-eid="249a90868d">聚焦态（点击激活）</label>
+        <input class="form-input" type="text" placeholder="聚焦时边框变鼠尾草绿…" style="border-color: var(--sage); box-shadow: 0 0 0 3px rgba(168,181,160,0.15);" data-lvt-eid="aafb9c77ae">
+      </div>
+
+      <div class="form-field" data-lvt-eid="53a9da479d">
+        <label class="form-label" data-lvt-eid="5b94c69d35">搜索框</label>
+        <div class="form-search-wrap" data-lvt-eid="f8e9291065">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#9A948A" stroke-width="1.5" stroke-linecap="round" data-lvt-eid="0812bb364e">
+            <circle cx="7" cy="7" r="4.5" data-lvt-eid="6a6cc0787b"></circle>
+            <line x1="10.5" y1="10.5" x2="14" y2="14" data-lvt-eid="badef9d578"></line>
+          </svg>
+          <input class="form-input" type="text" placeholder="搜索句子、心情、日期…" data-lvt-eid="bf1fdfe7c4">
+        </div>
+      </div>
+
+      <div class="form-field" data-lvt-eid="ae079429f9">
+        <label class="form-label" data-lvt-eid="175c81d47e">下拉选择</label>
+        <select class="form-select" data-lvt-eid="3c911a7c11">
+          <option value="" disabled="" selected="" data-lvt-eid="745a664f59">选择心情标签</option>
+          <option data-lvt-eid="0b925c6e6c">平静</option>
+          <option data-lvt-eid="72cf28a735">温柔</option>
+          <option data-lvt-eid="21aa9a3289">治愈</option>
+          <option data-lvt-eid="364079d349">思念</option>
+        </select>
+      </div>
+
+      <div class="form-field" data-lvt-eid="fd26f11131">
+        <label class="form-label" data-lvt-eid="8ef57f09c9">单选 Radio</label>
+        <div class="form-options-row" data-lvt-eid="be3cdfadc8">
+          <label class="form-option" data-lvt-eid="fef3993f3e">
+            <input type="radio" name="mood" checked="" data-lvt-eid="27ec0e01b2">
+            <div class="custom-radio" data-lvt-eid="74549b2901"></div>
+            温柔
+          </label>
+          <label class="form-option" data-lvt-eid="3bf7170118">
+            <input type="radio" name="mood" data-lvt-eid="00a2edd767">
+            <div class="custom-radio" data-lvt-eid="06d633413a"></div>
+            平静
+          </label>
+          <label class="form-option" data-lvt-eid="a80be34630">
+            <input type="radio" name="mood" data-lvt-eid="66e4b8220b">
+            <div class="custom-radio" data-lvt-eid="393db0ab60"></div>
+            治愈
+          </label>
+        </div>
+      </div>
+
+      <div class="form-field" data-lvt-eid="e4c5ab9f64">
+        <label class="form-label" data-lvt-eid="64e08a901f">复选 Checkbox</label>
+        <div class="form-options-row" data-lvt-eid="6bed50047a">
+          <label class="form-option" data-lvt-eid="b0a8407df6">
+            <input type="checkbox" checked="" data-lvt-eid="e365d00502">
+            <div class="custom-checkbox" data-lvt-eid="9afc6d346c"></div>
+            每日提醒
+          </label>
+          <label class="form-option" data-lvt-eid="7a1cd54fc1">
+            <input type="checkbox" checked="" data-lvt-eid="ae96e235b0">
+            <div class="custom-checkbox" data-lvt-eid="d548bf4148"></div>
+            保存到收藏
+          </label>
+          <label class="form-option" data-lvt-eid="cf03f3f491">
+            <input type="checkbox" data-lvt-eid="490ebf0f87">
+            <div class="custom-checkbox" data-lvt-eid="3b103f88f1"></div>
+            公开分享
+          </label>
+        </div>
+      </div>
+
+      <div class="form-field" data-lvt-eid="4c1f15e22e">
+        <label class="form-label" data-lvt-eid="fc502bbb10">开关 Switch</label>
+        <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 4px;" data-lvt-eid="87beabadbf">
+          <div class="switch-wrap" data-lvt-eid="53f02a256a">
+            <label class="switch" data-lvt-eid="71508c0303">
+              <input type="checkbox" checked="" data-lvt-eid="1459a66b14">
+              <div class="switch-track" data-lvt-eid="f5caf16940"></div>
+              <div class="switch-thumb" data-lvt-eid="4db89aa49c"></div>
+            </label>
+            <span data-lvt-eid="98117e2c12">开启通知</span>
+          </div>
+          <div class="switch-wrap" data-lvt-eid="1d6279428a">
+            <label class="switch" data-lvt-eid="7244d10318">
+              <input type="checkbox" data-lvt-eid="66ec37120a">
+              <div class="switch-track" data-lvt-eid="ae5c511238"></div>
+              <div class="switch-thumb" data-lvt-eid="7d9826b788"></div>
+            </label>
+            <span data-lvt-eid="2cf4fee2ec">深色模式</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 6. CARDS ═══ -->
+  <section class="section-card" data-lvt-eid="afaf8ea6ee">
+    <div class="section-label" data-lvt-eid="77536fdcc5">06 &nbsp; 卡片 Cards</div>
+    <div class="cards-grid" data-lvt-eid="8993230993">
+
+      <!-- 图文卡片 -->
+      <div class="content-card" data-lvt-eid="afba5056d5">
+        <div class="card-img-slot" data-lvt-eid="1e4b512f21">
+          <img src="https://a.lovart.ai/artifacts/agent/Ye4jTW4G2438mmwb.png" alt="今日一句氛围图" data-lvt-eid="154ceadca7">
+        </div>
+        <div class="card-body" data-lvt-eid="166e910589">
+          <div class="card-tag" data-lvt-eid="968dc0992b">
+            <div class="ring-deco" data-lvt-eid="1277b295ea"><div class="r-big" data-lvt-eid="c526590137"></div><div class="r-small" data-lvt-eid="8485c6bcfd"></div></div>
+            今日推荐
+          </div>
+          <div class="card-title" data-lvt-eid="a6d93bd508">今日一句</div>
+          <div class="card-text" data-lvt-eid="555fcf0419">有些温柔，是在某个安静的午后，忽然想起你说过的话。</div>
+          <button class="btn btn-secondary" style="height:36px; padding:0 16px; font-size:13px; border-radius:18px;" data-lvt-eid="f4e73e0065">阅读全文</button>
+        </div>
+      </div>
+
+      <!-- 纯文字备忘卡片 -->
+      <div class="memo-card" data-lvt-eid="c076594dad">
+        <div class="memo-date" data-lvt-eid="3ba38a6d19">2024 · 秋分</div>
+        <div class="card-title" data-lvt-eid="38ab871516">备忘录</div>
+        <div class="memo-content" data-lvt-eid="80d17ce2a4">今天的风很轻，像是有人在远处轻声说话。把这个感觉记下来，留给以后的自己看。</div>
+        <div class="memo-footer" data-lvt-eid="362c79dd80">
+          <span class="memo-tag" data-lvt-eid="7bed2549c4">私密</span>
+          <span style="font-size:12px; color:var(--text-caption);" data-lvt-eid="cec3578312">刚刚</span>
+        </div>
+      </div>
+
+      <!-- 心情记录小卡片 -->
+      <div class="mood-card" data-lvt-eid="34864a824b">
+        <div class="mood-header" data-lvt-eid="43051ed4f0">
+          <div class="mood-avatar" data-lvt-eid="92077785ce">🌿</div>
+          <div data-lvt-eid="01e148d4fb">
+            <div class="mood-user" data-lvt-eid="029a7eea4a">小</div>
+            <div class="mood-time" data-lvt-eid="58521413c6">今天 14:32</div>
+          </div>
+        </div>
+        <div class="mood-text" data-lvt-eid="530021b198">今天心情很平静，像一杯温热的茶，不烫也不凉，刚刚好。</div>
+        <div class="mood-emoji-row" data-lvt-eid="03e0136e70">
+          <div class="mood-emoji" data-lvt-eid="462cda5e1d">🌸</div>
+          <div class="mood-emoji" data-lvt-eid="b1ab1846c2">☁️</div>
+          <div class="mood-emoji" data-lvt-eid="f732940ada">🍃</div>
+          <div class="mood-emoji" data-lvt-eid="f16188cd58">✨</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 7. ICONS ═══ -->
+  <section class="section-card" data-lvt-eid="a2fa94ba5b">
+    <div class="section-label" data-lvt-eid="a48ec1909c">07 &nbsp; 图标与装饰 Iconography</div>
+
+    <div class="icon-grid" data-lvt-eid="db6b2de90b">
+      <!-- 首页 -->
+      <div class="icon-item" data-lvt-eid="bf79ad34b4">
+        <div class="icon-box" data-lvt-eid="2b15ebca85">
+          <svg viewBox="0 0 24 24" data-lvt-eid="33c5990f2c"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" data-lvt-eid="8b422458ac"></path><path d="M9 21V12h6v9" data-lvt-eid="a4aff1c477"></path></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="167b09de70">首页</span>
+      </div>
+      <!-- 记录 -->
+      <div class="icon-item" data-lvt-eid="49feab74de">
+        <div class="icon-box" data-lvt-eid="07df251897">
+          <svg viewBox="0 0 24 24" data-lvt-eid="7f00c3b01d"><rect x="4" y="3" width="16" height="18" rx="3" data-lvt-eid="6828cdcd13"></rect><line x1="8" y1="8" x2="16" y2="8" data-lvt-eid="8bf1ed384c"></line><line x1="8" y1="12" x2="16" y2="12" data-lvt-eid="d70729ef1b"></line><line x1="8" y1="16" x2="12" y2="16" data-lvt-eid="439534a439"></line></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="46edd30823">记录</span>
+      </div>
+      <!-- 发现 -->
+      <div class="icon-item" data-lvt-eid="e892519258">
+        <div class="icon-box" data-lvt-eid="3f0484f832">
+          <svg viewBox="0 0 24 24" data-lvt-eid="03598a8b91"><circle cx="12" cy="12" r="9" data-lvt-eid="aa91553088"></circle><path d="M14.5 9.5l-5 2-2 5 5-2 2-5z" data-lvt-eid="971a306331"></path><circle cx="12" cy="12" r="1" fill="#6B655B" stroke="none" data-lvt-eid="37476807b2"></circle></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="3859d9d9b0">发现</span>
+      </div>
+      <!-- 我的 -->
+      <div class="icon-item" data-lvt-eid="e5cad0ab36">
+        <div class="icon-box" data-lvt-eid="5c34ff3f9b">
+          <svg viewBox="0 0 24 24" data-lvt-eid="839788c29e"><circle cx="12" cy="8" r="4" data-lvt-eid="f67aa84905"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" data-lvt-eid="4882d5f9dc"></path></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="1462a03ffd">我的</span>
+      </div>
+      <!-- 搜索 -->
+      <div class="icon-item" data-lvt-eid="214b8ad2b0">
+        <div class="icon-box" data-lvt-eid="5a53f5ddf3">
+          <svg viewBox="0 0 24 24" data-lvt-eid="a5baf87c8e"><circle cx="11" cy="11" r="7" data-lvt-eid="62554dece0"></circle><line x1="16.5" y1="16.5" x2="21" y2="21" data-lvt-eid="dfad58c3e5"></line></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="0b2f629ace">搜索</span>
+      </div>
+      <!-- 收藏 -->
+      <div class="icon-item" data-lvt-eid="6ba13e1963">
+        <div class="icon-box" data-lvt-eid="b9352dca2a">
+          <svg viewBox="0 0 24 24" data-lvt-eid="ef6d3ad6de"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" data-lvt-eid="80e1bf9cc3"></path></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="fb78c657c3">收藏</span>
+      </div>
+      <!-- 设置 -->
+      <div class="icon-item" data-lvt-eid="942685f16c">
+        <div class="icon-box" data-lvt-eid="12efaec811">
+          <svg viewBox="0 0 24 24" data-lvt-eid="1a6662b674"><circle cx="12" cy="12" r="3" data-lvt-eid="1671260d2b"></circle><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" data-lvt-eid="00bd478f3c"></path></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="442405eed6">设置</span>
+      </div>
+      <!-- 通知 -->
+      <div class="icon-item" data-lvt-eid="99a2516d9b">
+        <div class="icon-box" data-lvt-eid="d23a30429b">
+          <svg viewBox="0 0 24 24" data-lvt-eid="26bb43ba2e"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" data-lvt-eid="d28e6a3bae"></path><path d="M13.73 21a2 2 0 01-3.46 0" data-lvt-eid="eeda3d060c"></path></svg>
+        </div>
+        <span class="icon-label" data-lvt-eid="1a282e8d1d">通知</span>
+      </div>
+    </div>
+
+    <!-- 品牌符号装饰 -->
+    <div class="brand-deco-row" data-lvt-eid="fe868ff367">
+      <span class="brand-deco-label" data-lvt-eid="ea905458bc">品牌符号衍生装饰</span>
+      <div class="deco-ring-item" data-lvt-eid="eb4be78394">
+        <div class="ring-deco" data-lvt-eid="fd0a69dc19"><div class="r-big" data-lvt-eid="c607196fc4"></div><div class="r-small" data-lvt-eid="96fc8d0460"></div></div>
+        列表项目符号
+      </div>
+      <div class="deco-ring-item" data-lvt-eid="c46abd6f11">
+        <div class="ring-deco" data-lvt-eid="306899de75"><div class="r-big" data-lvt-eid="ad2705cc2f"></div><div class="r-small" data-lvt-eid="e4876788b1"></div></div>
+        分隔装饰
+      </div>
+      <div class="deco-ring-item" data-lvt-eid="a7f55c8394">
+        <div class="ring-deco" data-lvt-eid="dec857d042"><div class="r-big" data-lvt-eid="27569699de"></div><div class="r-small" data-lvt-eid="6876b7c25e"></div></div>
+        引用标记
+      </div>
+      <div style="margin-left: auto;" data-lvt-eid="46a1c6a38d">
+        <div class="loading-placeholder" data-lvt-eid="1fa151dd74">
+          <div class="loading-ring-anim" data-lvt-eid="82490ce7c8">
+            <div class="lr-big" data-lvt-eid="5e0a445ee8"></div>
+            <div class="lr-small" data-lvt-eid="c6a59ef66b"></div>
+          </div>
+          <span class="loading-text" data-lvt-eid="9f207bf9db">加载中，请稍候…</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. NAVIGATION ═══ -->
+  <section class="section-card" data-lvt-eid="15b0e26cc4">
+    <div class="section-label" data-lvt-eid="fcf17c37ef">08 &nbsp; 导航与组件 Navigation</div>
+
+    <!-- Top Nav -->
+    <div class="nav-demo" data-lvt-eid="65cb85c1ff">
+      <div class="top-nav" data-lvt-eid="9b58b48ee3">
+        <div class="top-nav-logo" data-lvt-eid="2ee4b9c475">
+          <img class="top-nav-logo-img" src="https://a.lovart.ai/artifacts/agent/t7NL63i0Ai13Zt0i.png" alt="句外" data-lvt-eid="a624e2f883">
+          <span class="top-nav-brand" data-lvt-eid="122ef9accc">句外</span>
+        </div>
+        <ul class="top-nav-menu" data-lvt-eid="4718c13d60">
+          <li class="active" data-lvt-eid="5078417c73"><a href="#" data-lvt-eid="b5b64e9767">首页</a></li>
+          <li data-lvt-eid="14941c155d"><a href="#" data-lvt-eid="321674173b">记录</a></li>
+          <li data-lvt-eid="1b003f6ab0"><a href="#" data-lvt-eid="380a2b3ab3">发现</a></li>
+          <li data-lvt-eid="5afcc24d57"><a href="#" data-lvt-eid="5a3f1e2c14">我的</a></li>
+        </ul>
+        <div class="top-nav-avatar" data-lvt-eid="b12d94049b">🌿</div>
+      </div>
+    </div>
+
+    <!-- Tab Bar + Chips row -->
+    <div class="flex-row" style="align-items: flex-start; gap: 40px;" data-lvt-eid="2758aeb04e">
+      <!-- Tab Bar -->
+      <div data-lvt-eid="8184f9dff0">
+        <div class="tab-bar-demo" data-lvt-eid="89894ed27f">
+          <div class="tab-bar-label" data-lvt-eid="1ec4968d1a">移动端底部导航 Tab Bar</div>
+          <div class="tab-bar" data-lvt-eid="cf39606aaf">
+            <div class="tab-item active" data-lvt-eid="f737e55729">
+              <svg viewBox="0 0 24 24" data-lvt-eid="df5909ff59"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" data-lvt-eid="abfbbfd7e1"></path><path d="M9 21V12h6v9" data-lvt-eid="63fa124254"></path></svg>
+              <span class="tab-item-label" data-lvt-eid="83b0ab4f5e">首页</span>
+            </div>
+            <div class="tab-item" data-lvt-eid="2ea19506ae">
+              <svg viewBox="0 0 24 24" data-lvt-eid="10d662e9f7"><rect x="4" y="3" width="16" height="18" rx="3" data-lvt-eid="ac961cfe98"></rect><line x1="8" y1="8" x2="16" y2="8" data-lvt-eid="c6fa33de1a"></line><line x1="8" y1="12" x2="16" y2="12" data-lvt-eid="70c011103f"></line><line x1="8" y1="16" x2="12" y2="16" data-lvt-eid="ef98663d8e"></line></svg>
+              <span class="tab-item-label" data-lvt-eid="e01e2641d2">记录</span>
+            </div>
+            <div class="tab-item" data-lvt-eid="f9105ed558">
+              <svg viewBox="0 0 24 24" data-lvt-eid="3151620cf0"><circle cx="12" cy="12" r="9" data-lvt-eid="6b3d344e71"></circle><path d="M14.5 9.5l-5 2-2 5 5-2 2-5z" data-lvt-eid="a6a5846ac1"></path></svg>
+              <span class="tab-item-label" data-lvt-eid="15d5b43e78">发现</span>
+            </div>
+            <div class="tab-item" data-lvt-eid="0e378237c8">
+              <svg viewBox="0 0 24 24" data-lvt-eid="2a7b65029d"><circle cx="12" cy="8" r="4" data-lvt-eid="5c1977558d"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" data-lvt-eid="61ff147adb"></path></svg>
+              <span class="tab-item-label" data-lvt-eid="f2635199c4">我的</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chips + Progress + Segmented -->
+      <div style="flex: 1;" data-lvt-eid="29ebb34d88">
+        <p style="font-size:13px; color:var(--text-caption); letter-spacing:0.5px; margin-bottom:12px;" data-lvt-eid="b12263fd37">标签 Chips</p>
+        <div class="chips-row" data-lvt-eid="2dc1d6de54">
+          <div class="chip chip-active" data-lvt-eid="7a827659a6">全部</div>
+          <div class="chip chip-default" data-lvt-eid="41b35cf33a">心情</div>
+          <div class="chip chip-default" data-lvt-eid="c25aedf81e">日记</div>
+          <div class="chip chip-default" data-lvt-eid="e2d61ee64c">诗句</div>
+          <div class="chip chip-default" data-lvt-eid="e44bef08e6">想法</div>
+          <div class="chip chip-default" data-lvt-eid="4b32fd01e8">收藏</div>
+        </div>
+
+        <p style="font-size:13px; color:var(--text-caption); letter-spacing:0.5px; margin-bottom:12px; margin-top:24px;" data-lvt-eid="c3d536b389">进度条 Progress</p>
+        <div class="progress-wrap" data-lvt-eid="bd19cd77cb">
+          <div class="progress-label" data-lvt-eid="7d2cfc1c25">
+            <span data-lvt-eid="8c8c2e25ac">今日书写进度</span>
+            <span data-lvt-eid="7e82e98c4d">68%</span>
+          </div>
+          <div class="progress-bar" data-lvt-eid="1ff0127154">
+            <div class="progress-fill" style="width:68%;" data-lvt-eid="5e45bcc46b"></div>
+          </div>
+        </div>
+
+        <p style="font-size:13px; color:var(--text-caption); letter-spacing:0.5px; margin-bottom:12px; margin-top:24px;" data-lvt-eid="b7b225f6cd">分段控制器 Segmented</p>
+        <div class="segmented" data-lvt-eid="5441a683e4">
+          <div class="seg-item active" data-lvt-eid="c049af2496">最新</div>
+          <div class="seg-item" data-lvt-eid="87d93afd0e">最热</div>
+          <div class="seg-item" data-lvt-eid="0e0f68b4dc">推荐</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. SPACING & RADIUS ═══ -->
+  <section class="section-card" data-lvt-eid="318c4f2e83">
+    <div class="section-label" data-lvt-eid="ebe53c1419">09 &nbsp; 间距与圆角 Spacing &amp; Radius</div>
+
+    <p style="font-size:13px; color:var(--text-caption); letter-spacing:0.5px; margin-bottom:16px;" data-lvt-eid="d2787ac43e">间距梯度 Spacing</p>
+    <div class="spacing-row" data-lvt-eid="ae873f6226">
+      <div class="spacing-item" data-lvt-eid="d5671b80f8">
+        <div class="spacing-block" style="width:4px;" data-lvt-eid="ed1a4a130c"></div>
+        <span class="spacing-val" data-lvt-eid="3a95795abe">4px</span>
+      </div>
+      <div class="spacing-item" data-lvt-eid="0af2bc62f1">
+        <div class="spacing-block" style="width:8px;" data-lvt-eid="cca5d884d6"></div>
+        <span class="spacing-val" data-lvt-eid="e1e6fc1902">8px</span>
+      </div>
+      <div class="spacing-item" data-lvt-eid="be30e3d00f">
+        <div class="spacing-block" style="width:12px;" data-lvt-eid="eca8bd7c41"></div>
+        <span class="spacing-val" data-lvt-eid="b12ef367d8">12px</span>
+      </div>
+      <div class="spacing-item" data-lvt-eid="5ee7868407">
+        <div class="spacing-block" style="width:16px;" data-lvt-eid="d77c02c3f9"></div>
+        <span class="spacing-val" data-lvt-eid="90c51bb9db">16px</span>
+      </div>
+      <div class="spacing-item" data-lvt-eid="004a5a872d">
+        <div class="spacing-block" style="width:24px;" data-lvt-eid="42651dd93f"></div>
+        <span class="spacing-val" data-lvt-eid="3a44daf00c">24px</span>
+      </div>
+      <div class="spacing-item" data-lvt-eid="ee8a193288">
+        <div class="spacing-block" style="width:32px;" data-lvt-eid="744d6c7511"></div>
+        <span class="spacing-val" data-lvt-eid="dd1d010efc">32px</span>
+      </div>
+      <div class="spacing-item" data-lvt-eid="91a39e0407">
+        <div class="spacing-block" style="width:48px;" data-lvt-eid="7aecd49c9d"></div>
+        <span class="spacing-val" data-lvt-eid="159632c093">48px</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px; color:var(--text-caption); letter-spacing:0.5px; margin-bottom:16px; margin-top:8px;" data-lvt-eid="b4ccd59492">圆角梯度 Border Radius</p>
+    <div class="radius-row" data-lvt-eid="7179a62946">
+      <div class="radius-item" data-lvt-eid="70dde819df">
+        <div class="radius-block" style="border-radius:8px;" data-lvt-eid="aecb73d75f"></div>
+        <span class="radius-val" data-lvt-eid="b44f6b904d">8px</span>
+      </div>
+      <div class="radius-item" data-lvt-eid="0e94431d7f">
+        <div class="radius-block" style="border-radius:14px;" data-lvt-eid="89b8f25799"></div>
+        <span class="radius-val" data-lvt-eid="0c63328cbe">14px</span>
+      </div>
+      <div class="radius-item" data-lvt-eid="cd20a859bb">
+        <div class="radius-block" style="border-radius:20px;" data-lvt-eid="47c936c51f"></div>
+        <span class="radius-val" data-lvt-eid="9015319215">20px</span>
+      </div>
+      <div class="radius-item" data-lvt-eid="25b0bac63f">
+        <div class="radius-block" style="border-radius:24px;" data-lvt-eid="b8bb48474c"></div>
+        <span class="radius-val" data-lvt-eid="15bed8f895">24px</span>
+      </div>
+      <div class="radius-item" data-lvt-eid="960bfe8a25">
+        <div class="radius-block" style="border-radius:50%;" data-lvt-eid="ade1a15682"></div>
+        <span class="radius-val" data-lvt-eid="3bd621f30f">圆形</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer" data-lvt-eid="8ff7784cc7">
+  <p class="footer-text" data-lvt-eid="d83ffa84c9">句外 · 愿你在句号之外，继续书写。</p>
+</footer>
+
+<script>
+// 交互态演示：单选/复选/开关
+document.querySelectorAll('.form-option').forEach(opt => {
+  opt.addEventListener('click', function() {
+    const input = this.querySelector('input');
+    if (!input) return;
+    if (input.type === 'radio') {
+      const name = input.name;
+      document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+        const indicator = r.parentElement.querySelector('.custom-radio');
+        if (indicator) {
+          indicator.style.borderColor = '';
+          indicator.style.background = '';
+        }
+      });
+      input.checked = true;
+      const indicator = this.querySelector('.custom-radio');
+      if (indicator) {
+        indicator.style.borderColor = 'var(--sage)';
+        indicator.style.background = 'var(--sage)';
+      }
+    } else if (input.type === 'checkbox') {
+      input.checked = !input.checked;
+      const indicator = this.querySelector('.custom-checkbox');
+      if (indicator) {
+        indicator.style.borderColor = input.checked ? 'var(--sage)' : '';
+        indicator.style.background = input.checked ? 'var(--sage)' : '';
+      }
+    }
+  });
+});
+
+// Switch 交互
+document.querySelectorAll('.switch input').forEach(sw => {
+  sw.addEventListener('change', function() {
+    const track = this.nextElementSibling;
+    const thumb = track.nextElementSibling;
+    if (this.checked) {
+      track.style.background = 'var(--sage)';
+      thumb.style.transform = 'translateX(20px)';
+    } else {
+      track.style.background = '';
+      thumb.style.transform = '';
+    }
+  });
+});
+
+// Tab bar 交互
+document.querySelectorAll('.tab-item').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Chips 交互
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    const row = this.closest('.chips-row');
+    row.querySelectorAll('.chip').forEach(c => {
+      c.classList.remove('chip-active');
+      c.classList.add('chip-default');
+    });
+    this.classList.remove('chip-default');
+    this.classList.add('chip-active');
+  });
+});
+
+// Segmented 交互
+document.querySelectorAll('.seg-item').forEach(item => {
+  item.addEventListener('click', function() {
+    const seg = this.closest('.segmented');
+    seg.querySelectorAll('.seg-item').forEach(s => s.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+
+
+
+</body></html>
